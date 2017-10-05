@@ -80,15 +80,15 @@ int main() {
 
 	pid_t pid = fork();
 	if(pid) {
-		fprintf(stdout, "PAI working.\n");
+		fprintf(stdout, "PAI working. %d\n", getpid());
 		binary_semaphore_down(semid);
-		fprintf(stdout, "Inside semaphore PAI.\n");
+		fprintf(stdout, "Inside semaphore PAI. %d\n", semid);
 		binary_semaphore_up(semid);
 		fprintf(stdout, "Outside semaphore PAI.\n");
 	} else {
-		fprintf(stdout, "Filho working.\n");
+		fprintf(stdout, "Filho working.%d\n", getpid());
 		binary_semaphore_down(semid);
-		fprintf(stdout, "Inside semaphore FILHO.\n");
+		fprintf(stdout, "Inside semaphore FILHO. %d\n", semid);
 		binary_semaphore_up(semid);
 		fprintf(stdout, "Outside semaphore FILHO.\n");
 	}
